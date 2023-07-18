@@ -23,9 +23,12 @@ public class Estudiante {
     private LocalDate fechaDeNacimiento;
     @Column(name ="apellido" )
     private String apellido;
-    @Transient
+    //@Transient
     private int edad;
     @Column(name = "nombre")
     private String nombre;
+    public  boolean esMayorEdad(){
+        return edad >=18;
+    }
 
 }

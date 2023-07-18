@@ -18,4 +18,6 @@ public interface InscriptionRepository extends JpaRepository<Inscription, Long> 
     List<Inscription> findAllEstadoNative(@Param("estado") Status estado);
 
     List<Inscription>findByOrderByStatusAsc();
+
+
 }

@@ -1,5 +1,6 @@
 package com.trabajoPractico.trabajoPractico;
 
+import com.trabajoPractico.trabajoPractico.Service.InscripcionService;
 import com.trabajoPractico.trabajoPractico.domain.Curso;
 import com.trabajoPractico.trabajoPractico.domain.Estudiante;
 import com.trabajoPractico.trabajoPractico.domain.Inscription;
@@ -31,11 +32,15 @@ public class TrabajoPracticoApplication {
 	@Autowired
 	CursoRepository cursoRepository;
 
-	@Autowired
-	InscriptionRepository inscriptionRepository;
+	/*@Autowired
+	InscriptionRepository inscriptionRepository;*/
 
 	@Autowired
 	EstudianteRepository estudianteRepository;
+	@Autowired
+	InscripcionService inscripcionService;
+	@Autowired
+    private  InscriptionRepository inscriptionRepository;
 
 	List<Estudiante>listadoA=new ArrayList<>();
 	List<Estudiante>listadoB=new ArrayList<>();
@@ -52,7 +57,7 @@ public class TrabajoPracticoApplication {
 		cursoRepository.saveAll(Arrays.asList(cursoMatematica, cursoLengua, cursoBiologia, cursoCienciasS));
 	}
 	private void saveEstudiantes(){
-		listadoA.add(new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
+		listadoA.add(new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",19,"Fabio"));
 		listadoA.add(new Estudiante(null,2723456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
 		listadoB.add(new Estudiante(null,76535326,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
 		listadoB.add(new Estudiante(null,272456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
@@ -61,7 +66,7 @@ public class TrabajoPracticoApplication {
 		listadoD.add(new Estudiante(null,50123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
 		listadoD.add(new Estudiante(null,60123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
 		estudianteRepository.saveAll(Arrays.asList(
-				new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
+				new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",19,"Fabio"),
 				new Estudiante(null,2723456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
 				new Estudiante(null,76535326,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
 				new Estudiante(null,272456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
@@ -72,7 +77,7 @@ public class TrabajoPracticoApplication {
 		));
 
 	}
-	private void saveInscripcion(){
+	/*private void saveInscripcion(){
 		inscriptionRepository.saveAll(Arrays.asList(
 				new Inscription(null,cursoMatematica,LocalDate.parse("2000-02-15"),listadoA, Status.ACEPTADO),
 				new Inscription(null,cursoLengua,LocalDate.parse("2000-02-15"),listadoB, Status.RECHAZADO),
@@ -80,24 +85,33 @@ public class TrabajoPracticoApplication {
 				new Inscription(null,cursoBiologia,LocalDate.parse("2000-02-15"),listadoD, Status.ACEPTADO)
 
 		         ));
-	}
+	}*/
 	private void showCursos(){
 		List<Curso> Lalo = cursoRepository.finAllCursos();
 		for (Curso c:Lalo) {
 			System.out.println(c.getNombre());
 		}
 	}
-	//EstudianteRepository.findAll(PageRequest.of(0,3,Sort.Direction.ASC,"dni" ))
+
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx){
 		return  args -> {
 			saveCursos();
 			saveEstudiantes();
-			saveInscripcion();
+			//saveInscripcion();
 			showCursos();
             //Listar todos los estudiantes de forma paginada y ordenada ascendente por DNI
-			estudianteRepository.findAll(PageRequest.of(1, 5,Sort.by(Sort.Direction.ASC,"dni")));
-			estudianteRepository.findAll(PageRequest.of(0, 2,Sort.by(Sort.Direction.ASC,"dni")));
+			//estudianteRepository.findAll(PageRequest.of(1, 5,Sort.by(Sort.Direction.ASC,"dni")));
+			//estudianteRepository.findAll(PageRequest.of(0, 2,Sort.by(Sort.Direction.ASC,"dni")));
+			inscripcionService.insc(
+					1L,
+					2L,
+					LocalDate.now(),
+					listadoA,
+					Status.ACEPTADO
+
+			);
+
 
 
 		};
