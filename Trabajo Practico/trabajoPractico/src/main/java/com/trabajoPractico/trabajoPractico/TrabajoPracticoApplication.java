@@ -14,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +87,7 @@ public class TrabajoPracticoApplication {
 			System.out.println(c.getNombre());
 		}
 	}
+	//EstudianteRepository.findAll(PageRequest.of(0,3,Sort.Direction.ASC,"dni" ))
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx){
 		return  args -> {
@@ -92,7 +95,9 @@ public class TrabajoPracticoApplication {
 			saveEstudiantes();
 			saveInscripcion();
 			showCursos();
-
+            //Listar todos los estudiantes de forma paginada y ordenada ascendente por DNI
+			estudianteRepository.findAll(PageRequest.of(1, 5,Sort.by(Sort.Direction.ASC,"dni")));
+			estudianteRepository.findAll(PageRequest.of(0, 2,Sort.by(Sort.Direction.ASC,"dni")));
 
 
 		};
