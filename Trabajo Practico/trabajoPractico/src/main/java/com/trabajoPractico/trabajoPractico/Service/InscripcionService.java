@@ -7,6 +7,7 @@ import com.trabajoPractico.trabajoPractico.domain.Status;
 import com.trabajoPractico.trabajoPractico.repository.CursoRepository;
 import com.trabajoPractico.trabajoPractico.repository.EstudianteRepository;
 import com.trabajoPractico.trabajoPractico.repository.InscriptionRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ public class InscripcionService {
     @Autowired
     private InscriptionRepository inscriptionRepository;
 
-    public  void insc(@NotNull @Positive Long estudianteId,@NotNull @Positive(message ="El id no puede ser negativo") Long cursoId,  LocalDate inscStartDate, List<Estudiante> estudiantes, Status status){
+    @Transactional
+    public  void insc(@NotNull @Positive Long estudianteId,@NotNull @Positive(message ="El id no puede ser negativo") Long cursoId,  LocalDate inscStartDate){
        // Objects.requireNonNull(cursoId, "El id no es valido");
 
         Estudiante estudiante= estudianteRepository
@@ -46,10 +48,10 @@ public class InscripcionService {
 
         Inscription inscription=new Inscription(
                 null,
+                estudiante,
                 curso,
-                inscStartDate,
-                estudiantes,
-                status
+                inscStartDate
+
         );
         inscriptionRepository.save(inscription);
 

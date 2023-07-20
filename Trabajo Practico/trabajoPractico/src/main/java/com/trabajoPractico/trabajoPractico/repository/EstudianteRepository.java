@@ -15,5 +15,9 @@ public interface EstudianteRepository extends JpaRepository<Estudiante,Long> {
     List<Estudiante> findByDniAndApellido();
     List<Estudiante>findByOrderByNombreAsc();
 
+    //boolean existsByFirstName(String nombre);
+
+   // long countByFirstName(String nombre);
+
 
 }

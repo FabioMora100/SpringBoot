@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface InscriptionRepository extends JpaRepository<Inscription, Long> {
-    @Query("SELECT c FROM Inscription c WHERE c.status =Status.RECHAZADO OR c.status=Status.PENDIENTE")
+  /*  @Query("SELECT c FROM Inscription c WHERE c.status =Status.RECHAZADO OR c.status=Status.PENDIENTE")
     List<Inscription>findByRECHAZADOorPENDIENTE();
     @Query("SELECT c FROM Inscription c WHERE c.status = :estado")
     List<Inscription> findAllESTADO(@Param("estado") Status estado);
@@ -18,6 +18,6 @@ public interface InscriptionRepository extends JpaRepository<Inscription, Long> 
     List<Inscription> findAllEstadoNative(@Param("estado") Status estado);
 
     List<Inscription>findByOrderByStatusAsc();
-
+*/
 
 }

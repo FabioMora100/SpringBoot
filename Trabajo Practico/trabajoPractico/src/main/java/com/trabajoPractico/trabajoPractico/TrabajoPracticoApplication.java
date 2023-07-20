@@ -39,8 +39,7 @@ public class TrabajoPracticoApplication {
 	EstudianteRepository estudianteRepository;
 	@Autowired
 	InscripcionService inscripcionService;
-	@Autowired
-    private  InscriptionRepository inscriptionRepository;
+
 
 	List<Estudiante>listadoA=new ArrayList<>();
 	List<Estudiante>listadoB=new ArrayList<>();
@@ -57,23 +56,17 @@ public class TrabajoPracticoApplication {
 		cursoRepository.saveAll(Arrays.asList(cursoMatematica, cursoLengua, cursoBiologia, cursoCienciasS));
 	}
 	private void saveEstudiantes(){
-		listadoA.add(new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",19,"Fabio"));
-		listadoA.add(new Estudiante(null,2723456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoB.add(new Estudiante(null,76535326,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoB.add(new Estudiante(null,272456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoC.add(new Estudiante(null,70123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoC.add(new Estudiante(null,80123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoD.add(new Estudiante(null,50123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
-		listadoD.add(new Estudiante(null,60123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"));
+		listadoA.add(new Estudiante(null,"Carlos","Romero","Romero@gmail.com",36753159,LocalDate.parse("2004-02-15"),19));
+		listadoA.add(new Estudiante(null,"Fabio","Perez","fabio@gmail.com",123456789,LocalDate.parse("1998-02-15"),25));
+		listadoB.add(new Estudiante(null,"Romina","Gonzales","romina@gmail.com",45123789,LocalDate.parse("2000-02-15"),30));
+		listadoB.add(new Estudiante(null,"Maria","Duran","Maria@gmail.com",78456123,LocalDate.parse("2000-02-15"),80));
+
 		estudianteRepository.saveAll(Arrays.asList(
-				new Estudiante(null,20123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",19,"Fabio"),
-				new Estudiante(null,2723456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-				new Estudiante(null,76535326,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-				new Estudiante(null,272456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-		        new Estudiante(null,70123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-				new Estudiante(null,80123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-				new Estudiante(null,50123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio"),
-				new Estudiante(null,60123456,"fabio@gmail.com",LocalDate.parse("2000-02-15"),"Gonzalez",33,"Fabio")
+				new Estudiante(null,"Carlos","Romero","Romero@gmail.com",36753159,LocalDate.parse("2004-02-15"),19),
+				new Estudiante(null,"Fabio","Perez","fabio@gmail.com",123456789,LocalDate.parse("1998-02-15"),25),
+				new Estudiante(null,"Romina","Gonzales","romina@gmail.com",45123789,LocalDate.parse("2000-02-15"),30),
+				new Estudiante(null,"Maria","Duran","Maria@gmail.com",78456123,LocalDate.parse("2000-02-15"),80)
+
 		));
 
 	}
@@ -103,14 +96,14 @@ public class TrabajoPracticoApplication {
             //Listar todos los estudiantes de forma paginada y ordenada ascendente por DNI
 			//estudianteRepository.findAll(PageRequest.of(1, 5,Sort.by(Sort.Direction.ASC,"dni")));
 			//estudianteRepository.findAll(PageRequest.of(0, 2,Sort.by(Sort.Direction.ASC,"dni")));
-			inscripcionService.insc(
+		/*	inscripcionService.insc(
 					1L,
 					2L,
 					LocalDate.now(),
 					listadoA,
 					Status.ACEPTADO
 
-			);
+			);*/
 
 
 
